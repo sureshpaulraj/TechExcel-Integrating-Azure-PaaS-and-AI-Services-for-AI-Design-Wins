@@ -18,6 +18,7 @@ public class DatabaseService : IDatabaseService
         using var conn = new SqlConnection(
             connectionString: Environment.GetEnvironmentVariable("SQLAZURECONNSTR_ContosoSuites")!
         );
+        Console.WriteLine($"Connection string: {Environment.GetEnvironmentVariable("SQLAZURECONNSTR_ContosoSuites")}");
         conn.Open();
         using var cmd = new SqlCommand(sql, conn);
         using var reader = await cmd.ExecuteReaderAsync();
@@ -32,6 +33,7 @@ public class DatabaseService : IDatabaseService
                 Country = reader.GetString(3)
             });
         }
+        hotels.ForEach(hotel => Console.WriteLine($"Hotel: {hotel.HotelName}"));
         conn.Close();
 
         return hotels;
