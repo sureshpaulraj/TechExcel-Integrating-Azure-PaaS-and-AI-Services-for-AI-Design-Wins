@@ -58,6 +58,7 @@ namespace ContosoSuites.Functions
             CreateLeaseContainerIfNotExists = true)] IReadOnlyList<MaintenanceRequest> input)
         {
             var documentsToVectorize = input.Where(t => t.Type != "Vectorized");
+            Console.WriteLine($"????Documents to vectorize: {documentsToVectorize.Count()}");
             if (documentsToVectorize.Count() == 0) return null;
 
             foreach (var request in documentsToVectorize)
